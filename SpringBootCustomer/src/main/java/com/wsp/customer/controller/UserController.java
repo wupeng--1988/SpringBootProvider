@@ -4,10 +4,7 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.springboot.test.pojo.User;
 import com.springboot.test.service.UserService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -41,6 +38,14 @@ public class UserController {
     public Map<String, Object> selectAll(@RequestParam("index") int index) {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("data", userService.selectAll(index));
+        return map;
+    }
+
+    @RequestMapping("updatepsd.do")
+    @ResponseBody
+    public Map<String, Object> updatePSD(@RequestParam("phone") String phone, @RequestParam("password") String password) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("data", userService.updatePSD(phone, password));
         return map;
     }
 
